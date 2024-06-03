@@ -4,21 +4,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Unicode-toMdC</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <h1>Unicode-to-MdC and vice versa</h1>
+    <h1>Unicode-to-MdC and MdC-to-Unicode</h1>
+    <div class="input-container">
     <div>
-        <label for="unicodeInput">Unicode:</label>
-        <input type="text" id="unicodeInput" oninput="convertFromUnicode()">
+        <label for="unicodeInput">Unicode</label>
+        <textarea rows="4" cols="50" name="comment" class="input-box" id="unicodeInput" oninput="convertFromUnicode()"></textarea>
     </div>
     <div>
-        <label for="unicodeCodeInput">Unicode Code:</label>
-        <input type="text" id="unicodeCodeInput" oninput="convertFromUnicodeCode()">
+        <label for="unicodeCodeInput">Unicode Code</label>
+        <textarea rows="4" cols="50" name="comment" class="input-box" id="unicodeCodeInput" oninput="convertFromUnicodeCode()"></textarea>
     </div>
     <div>
-        <label for="mdcInput">Manuel de Codage:</label>
-        <input type="text" id="mdcInput" oninput="convertFromMdc()">
+        <label for="mdcInput">Manuel de Codage</label>
+        <textarea rows="4" cols="50" name="comment" class="input-box" id="mdcInput" oninput="convertFromMdc()"></textarea>
     </div>
+</div>
     <div>
         <p>The MdC to Unicode converter does not recognize MdC punctuation beyond the sign groups already recognized by Unicode (for example, 𓂱 = D50*D50*D50:D50*D50). The rest of the signs must be separated by a "-".</p>
     </div>
@@ -2308,7 +2311,7 @@
     {
         "unicode": "𓇌",
         "unicode_code": "131cc",
-        "mdc": "M17*M17"
+        "mdc": "i*i"
     },
     {
         "unicode": "𓇍",
