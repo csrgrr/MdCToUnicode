@@ -1,0 +1,45 @@
+body {
+    text-align: center;
+    background-color:rgb(129, 202, 129);
+    color: black;
+}
+
+.input-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    background-color: rgb(16, 176, 16);
+    padding: 1em;
+    padding-bottom: 2em;
+    border-radius: 15px;
+    color: whitesmoke
+}
+.input-container div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+
+    width: 100%;
+    margin-left: 1em;
+    margin-right: 1em;
+}
+.input-box {
+    width: 100%;
+    height: 10em;
+    text-align: start;
+
+    border-radius: 5px;
+}
+
+@media (max-width: 768px) {
+    .input-container {
+        flex-direction: column;
+        margin: 2em;
+    }
+    .input-box {
+        margin-bottom: 2em;
+    }
+  }
