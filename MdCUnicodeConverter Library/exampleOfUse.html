@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Example of use</title>
+</head>
+<body>
+    
+    
+    <div id="results"></div>
+
+    <script src="MdCUnicodeConverter.js"></script>
+    <script>
+        const converter = new MdCUnicodeConverter();
+
+// SHOWING IT IN CONSOLE
+        console.log(converter.convertFromUnicode("𓀀")); // { "unicode": "𓀀", "unicode_code": "13000", "mdc": "A1" }
+        console.log(converter.convertFromUnicodeCode("13000")); // { "unicode": "𓀀", "unicode_code": "13000", "mdc": "A1" }
+        console.log(converter.convertFromMdC("A1")); // { "unicode": "𓀀", "unicode_code": "13000", "mdc": "A1" }
+
+
+// SHOWING IT ON SCREEN
+        const unicodeResult = converter.convertFromUnicode("𓀀");
+        const unicodeCodeResult = converter.convertFromUnicodeCode("13000");
+        const mdcResult = converter.convertFromMdC("A1");
+
+        const resultsDiv = document.getElementById('results');
+
+        const unicodeResultLine = document.createElement('p');
+        unicodeResultLine.textContent = `convertFromUnicode("𓀀") -> ${JSON.stringify(unicodeResult)}`;
+        resultsDiv.appendChild(unicodeResultLine);
+
+        const unicodeCodeResultLine = document.createElement('p');
+        unicodeCodeResultLine.textContent = `convertFromUnicodeCode("13000") -> ${JSON.stringify(unicodeCodeResult)}`;
+        resultsDiv.appendChild(unicodeCodeResultLine);
+
+        const mdcResultLine = document.createElement('p');
+        mdcResultLine.textContent = `convertFromMdC("A1") -> ${JSON.stringify(mdcResult)}`;
+        resultsDiv.appendChild(mdcResultLine);
+    </script>
+</body>
+</html>
