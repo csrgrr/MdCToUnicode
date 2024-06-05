@@ -5057,10 +5057,3 @@ class MdCUnicodeConverter {
         return null;
     }
 }
-
-// // Ejemplo de uso:
-// const converter = new UnicodeConverter();
-
-// console.log(converter.convertFromUnicode("𓀀")); // { "unicode": "𓀀", "unicode_code": "13000", "mdc": "A1" }
-// console.log(converter.convertFromUnicodeCode("13000")); // { "unicode": "𓀀", "unicode_code": "13000", "mdc": "A1" }
-// console.log(converter.convertFromMdC("A1")); // { "unicode": "𓀀", "unicode_code": "13000", "mdc": "A1" }
