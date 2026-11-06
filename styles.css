@@ -1,45 +1,97 @@
 body {
-    text-align: center;
-    background-color:rgb(129, 202, 129);
-    color: black;
+  text-align: center;
+  background-color: rgb(129, 202, 129);
+  color: black;
+}
+
+.license {
+  margin-top: 2em;
+  font-size: 0.9em;
+}
+.license a {
+  color: rgb(20, 60, 20);
 }
 
 .input-container {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    align-items: center;
-    background-color: rgb(16, 176, 16);
-    padding: 1em;
-    padding-bottom: 2em;
-    border-radius: 15px;
-    color: whitesmoke
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: flex-start;
+  background-color: rgb(16, 176, 16);
+  padding: 1em;
+  padding-bottom: 2em;
+  border-radius: 15px;
+  color: whitesmoke;
 }
 .input-container div {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-content: center;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
 
-    width: 100%;
-    margin-left: 1em;
-    margin-right: 1em;
+  width: 100%;
+  margin-left: 1em;
+  margin-right: 1em;
 }
 .input-box {
-    width: 100%;
-    height: 10em;
-    text-align: start;
+  width: 100%;
+  height: 10rem;
+  box-sizing: border-box;
+  padding: 0.6em 0.8em;
+  text-align: start;
+  vertical-align: top;
+  line-height: 1.3;
+  resize: vertical;
 
-    border-radius: 5px;
+  background-color: rgb(232, 245, 232);
+  color: rgb(20, 60, 20);
+  border: 1px solid rgb(120, 190, 120);
+  border-radius: 5px;
+}
+.input-box:focus {
+  outline: none;
+  background-color: rgb(244, 251, 244);
+  border-color: rgb(16, 176, 16);
+  box-shadow: 0 0 0 2px rgba(16, 176, 16, 0.35);
+}
+
+/* Microsoft Egyptian OpenType (OFL): implements the Unicode Egyptian Hieroglyph Format Controls. */
+@font-face {
+  font-family: "EgyptianOpenType";
+  src: url("fonts/eot.ttf") format("truetype");
+  font-display: swap;
+}
+
+.hieroglyphs {
+  font-family:
+    "EgyptianOpenType", "Egyptian Text", "NewGardiner",
+    "Noto Sans Egyptian Hieroglyphs", "Segoe UI Historic", sans-serif;
+  font-size: 2em;
+}
+
+.warnings {
+  color: darkred;
+  min-height: 1.2em;
+}
+
+.help table {
+  margin: 0 auto;
+  border-collapse: collapse;
+  text-align: left;
+}
+.help th,
+.help td {
+  border: 1px solid rgb(16, 176, 16);
+  padding: 0.3em 0.6em;
 }
 
 @media (max-width: 768px) {
-    .input-container {
-        flex-direction: column;
-        margin: 2em;
-    }
-    .input-box {
-        margin-bottom: 2em;
-    }
+  .input-container {
+    flex-direction: column;
+    margin: 2em;
   }
+  .input-box {
+    margin-bottom: 2em;
+  }
+}
