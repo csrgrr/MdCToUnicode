@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
-    <h1>Unicode-to-MdC and MdC-to-Unicode</h1>
+    <h1>Bidirectional MdC-Unicode converter</h1>
     <div class="input-container">
       <div>
         <label for="mdcInput">Manuel de Codage</label>
@@ -19,7 +19,9 @@
           class="input-box"
           id="mdcInput"
           oninput="convertFromMdc()"
-        ></textarea>
+        >
+G17^bsX1-&lt;-N5-Y5:N35-L1-&gt;</textarea
+        >
       </div>
       <div>
         <label for="unicodeCodeInput">Unicode Code</label>
@@ -235,6 +237,8 @@
           converter.unicodeToCodes(unicode);
         showWarnings(warnings);
       }
+
+      convertFromMdc();
     </script>
   </body>
 </html>
