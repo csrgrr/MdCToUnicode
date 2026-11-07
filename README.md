@@ -2,6 +2,9 @@
 
 A browser-based, bidirectional converter between Manuel de Codage (MdC), Unicode Egyptian hieroglyphs, and hexadecimal Unicode code points.
 
+<img width="3070" height="1598" alt="screenshot" src="https://github.com/user-attachments/assets/3cf7c1b2-6d58-448c-bcd7-16a728d7c12c" />
+
+
 ## Web app
 
 Open [MdCToUnicode.html](MdCToUnicode.html) in a browser. Edit any of the three fields (MdC, Unicode code points, or Unicode text) to update the other two. Invalid or unsupported input is reported below the fields.
@@ -17,7 +20,8 @@ For a page at the repository root, include the library and create a converter:
 ```html
 <script src="MdCUnicodeConverter%20Library/MdCUnicodeConverter.js"></script>
 <script>
-  const converter = new MdCUnicodeConverter();
+  const converter = new MdCUnicodeConverter();![Uploading screenshot.png…]()
+
   const warnings = [];
   const unicode = converter.mdcToUnicode("G17^bsX1-<-N5-Y5:N35-L1->", warnings);
   console.log(unicode);
