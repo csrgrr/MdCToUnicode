@@ -1,43 +1,83 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Example of use</title>
-</head>
-<body>
-    
-    
+    <style>
+      @font-face {
+        font-family: "EgyptianOpenType";
+        src: url("../fonts/eot.ttf") format("truetype");
+        unicode-range: U+13000-1345F, U+FE00-FE06;
+      }
+      body {
+        font-family: "EgyptianOpenType", Arial, Helvetica, sans-serif;
+      }
+    </style>
+  </head>
+  <body>
     <div id="results"></div>
 
     <script src="MdCUnicodeConverter.js"></script>
     <script>
-        const converter = new MdCUnicodeConverter();
+      const converter = new MdCUnicodeConverter();
 
-// SHOWING IT IN CONSOLE
-        console.log(converter.convertFromUnicode("𓀀")); // { "unicode": "𓀀", "unicode_code": "13000", "mdc": "A1" }
-        console.log(converter.convertFromUnicodeCode("13000")); // { "unicode": "𓀀", "unicode_code": "13000", "mdc": "A1" }
-        console.log(converter.convertFromMdC("A1")); // { "unicode": "𓀀", "unicode_code": "13000", "mdc": "A1" }
+      // SHOWING IT IN CONSOLE
+      console.log(converter.convertFromUnicode("𓀀")); // { "unicode": "𓀀", "unicode_code": "13000", "mdc": "A1" }
+      console.log(converter.convertFromUnicodeCode("13000")); // { "unicode": "𓀀", "unicode_code": "13000", "mdc": "A1" }
+      console.log(converter.convertFromMdC("A1")); // { "unicode": "𓀀", "unicode_code": "13000", "mdc": "A1" }
 
+      // Offering formula: Htp-di-nswt
+      console.log(converter.mdcToUnicode("M23-X1:N35-R4:X1*Q3-D37")); // "𓇓𓏏𓐰𓈖𓊵𓐰𓏏𓐱𓊪𓂞"
+      // Cartouche of Thutmose III (Menkheperre)
+      console.log(converter.mdcToUnicode("<-N5-Y5:N35-L1->")); // "𓍹𓐼𓇳𓏠𓐰𓈖𓆣𓐽𓍺"
+      // Insertion, overlay and nested groups
+      console.log(
+        converter.mdcToUnicode("G17^bsX1-D36&V28-J15:Z11*(D2*(D21:X1):N25)"),
+      );
+      // From Unicode back to MdC
+      console.log(converter.unicodeToMdc("𓍹𓐼𓇳𓄟𓋴𓋴𓐽𓍺")); // "<-N5-F31-S29-S29->"
 
-// SHOWING IT ON SCREEN
-        const unicodeResult = converter.convertFromUnicode("𓀀");
-        const unicodeCodeResult = converter.convertFromUnicodeCode("13000");
-        const mdcResult = converter.convertFromMdC("A1");
+      // SHOWING IT ON SCREEN
+      const unicodeResult = converter.convertFromUnicode("𓀀");
+      const unicodeCodeResult = converter.convertFromUnicodeCode("13000");
+      const mdcResult = converter.convertFromMdC("A1");
 
-        const resultsDiv = document.getElementById('results');
+      const resultsDiv = document.getElementById("results");
 
-        const unicodeResultLine = document.createElement('p');
-        unicodeResultLine.textContent = `convertFromUnicode("𓀀") -> ${JSON.stringify(unicodeResult)}`;
-        resultsDiv.appendChild(unicodeResultLine);
+      const unicodeResultLine = document.createElement("p");
+      unicodeResultLine.textContent = `convertFromUnicode("𓀀") -> ${JSON.stringify(unicodeResult)}`;
+      resultsDiv.appendChild(unicodeResultLine);
 
-        const unicodeCodeResultLine = document.createElement('p');
-        unicodeCodeResultLine.textContent = `convertFromUnicodeCode("13000") -> ${JSON.stringify(unicodeCodeResult)}`;
-        resultsDiv.appendChild(unicodeCodeResultLine);
+      const unicodeCodeResultLine = document.createElement("p");
+      unicodeCodeResultLine.textContent = `convertFromUnicodeCode("13000") -> ${JSON.stringify(unicodeCodeResult)}`;
+      resultsDiv.appendChild(unicodeCodeResultLine);
 
-        const mdcResultLine = document.createElement('p');
-        mdcResultLine.textContent = `convertFromMdC("A1") -> ${JSON.stringify(mdcResult)}`;
-        resultsDiv.appendChild(mdcResultLine);
+      const mdcResultLine = document.createElement("p");
+      mdcResultLine.textContent = `convertFromMdC("A1") -> ${JSON.stringify(mdcResult)}`;
+      resultsDiv.appendChild(mdcResultLine);
+
+      // Complex lines of hieroglyphs
+      const mdcLines = [
+        "M23-X1:N35-R4:X1*Q3-D37", // Htp-di-nswt (offering formula)
+        "<-N5-Y5:N35-L1->", // cartouche of Thutmose III
+        "<-N5-F31-S29-S29->", // cartouche of Ramesses
+        "G17^bsX1-I10^bs(X1:N18)-D36&V28", // insertions and overlay
+        "J15:Z11*(D2*(D21:X1):N25)", // nested groups
+        "<S-G5-S>-D54\\-F46\\r2-A1#12-//-[[D21:X1]]", // serekh, mirror, rotation, damage, lost sign, restored text
+      ];
+
+      for (const mdc of mdcLines) {
+        const unicode = converter.mdcToUnicode(mdc);
+
+        const mdcToUnicodeLine = document.createElement("p");
+        mdcToUnicodeLine.textContent = `mdcToUnicode("${mdc}") -> ${unicode}`;
+        resultsDiv.appendChild(mdcToUnicodeLine);
+
+        const unicodeToMdcLine = document.createElement("p");
+        unicodeToMdcLine.textContent = `unicodeToMdc("${unicode}") -> ${converter.unicodeToMdc(unicode)}`;
+        resultsDiv.appendChild(unicodeToMdcLine);
+      }
     </script>
-</body>
+  </body>
 </html>
