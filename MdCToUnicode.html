@@ -8,7 +8,10 @@
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
-    <h1>Bidirectional MdC-Unicode converter</h1>
+    <div class="top-actions">
+      <button class="about-button" id="openAbout" type="button">ABOUT</button>
+    </div>
+    <h1>Bidirectional MdC↔Unicode converter</h1>
     <div class="input-container">
       <div>
         <label for="mdcInput">Manuel de Codage</label>
@@ -188,9 +191,167 @@ G17^bsX1-&lt;-N5-Y5:N35-L1-&gt;</textarea
       </p>
     </footer>
 
+    <dialog
+      class="about-modal"
+      id="aboutModal"
+      aria-labelledby="aboutTitle"
+      lang="en"
+    >
+      <div class="about-modal__header">
+        <h2 id="aboutTitle">About this converter</h2>
+        <button
+          class="about-modal__close"
+          id="closeAbout"
+          type="button"
+          aria-label="Close about dialog"
+          autofocus
+        >
+          &times;
+        </button>
+      </div>
+      <div class="about-modal__content">
+        <p>
+          A current debate in digital Egyptology concerns the use of Unicode as
+          a standard for encoding hieroglyphs in academic publications.
+        </p>
+        <p>
+          In this field, the <em>Manuel de Codage</em> (MdC), as used by
+          applications such as
+          <a
+            href="https://jsesh.qenherkhopeshef.org/"
+            target="_blank"
+            rel="noopener noreferrer"
+            >JSesh</a
+          >, has long held that role, much as LaTeX is used to encode
+          mathematical expressions in other academic disciplines. MdC works
+          well for producing images, but a long-standing question has been
+          whether correctly formatted hieroglyphic lines can be embedded as
+          inline text without inserting images into the text.
+        </p>
+        <p>
+          Unicode seems like a reasonable solution. Until recently, however,
+          its hieroglyph repertoire was relatively limited, especially compared
+          with JSesh, whose sign inventory contains roughly 7,000 signs. This
+          changed substantially with
+          <a
+            href="https://www.unicode.org/versions/Unicode16.0.0/"
+            target="_blank"
+            rel="noopener noreferrer"
+            >Unicode 16.0</a
+          >
+          (2024), which introduced the Egyptian Hieroglyphs Extended-A block
+          with 3,995 additional characters. The current Unicode 18.0 sign
+          database used by this converter covers 5,067 signs. Unicode 12.0
+          (2019) had already introduced the
+          <a
+            href="https://www.unicode.org/versions/Unicode12.0.0/"
+            target="_blank"
+            rel="noopener noreferrer"
+            >Egyptian Hieroglyph Format Controls</a
+          >, which arrange signs into quadrats and position or transform them
+          in ways similar to JSesh. See also the
+          <a
+            href="https://www.unicode.org/versions/Unicode16.0.0/core-spec/chapter-11/#11.4.3"
+            target="_blank"
+            rel="noopener noreferrer"
+            >Unicode specification for these controls</a
+          >. Unicode 18.0 continues this technical development, and updates the
+          <a href="https://www.unicode.org/reports/tr57/" target="_blank" rel="noopener noreferrer"
+            >Unikemet database</a
+          >, which provides information to help identify, classify, and process
+          signs in fonts and software. See the
+          <a
+            href="https://www.unicode.org/versions/Unicode18.0.0/"
+            target="_blank"
+            rel="noopener noreferrer"
+            >Unicode 18.0 release notes</a
+          >.
+        </p>
+        <p>
+          Despite these improvements, the repertoire remains smaller than
+          JSesh's, particularly for subtle variants that are essential to some
+          research, and Unicode does not support every transformation available
+          in JSesh. Moreover, the format controls display correctly only with a
+          font and text layout engine that support the specification.
+          Otherwise, they may appear inline as visible boxes, as in this
+          example:
+        </p>
+        <p class="about-sample" dir="ltr">
+          𓅓𓐳𓏏𓍹𓐼𓇳𓏠𓐰𓈖𓆣𓐽𓍺
+        </p>
+        <p>instead of</p>
+        <p class="about-sample hieroglyphs" dir="ltr">
+          𓅓𓐳𓏏𓍹𓐼𓇳𓏠𓐰𓈖𓆣𓐽𓍺
+        </p>
+        <p>
+          This does not prevent Unicode from serving as a reasonable resource
+          for research texts when used with a suitable font and software, much
+          like transliteration. Meanwhile, hieroglyph processing applications
+          such as JSesh remain necessary for generating figures and for contexts
+          where exact reproduction of the original layout is essential.
+        </p>
+        <p>
+          With these new possibilities in mind, I have updated a small web tool
+          and developer library that I first created in 2024 to convert between
+          MdC and Unicode. The original version did not support sign positioning.
+          It now includes the expanded sign repertoire and the composition and
+          transformation mechanisms available in Unicode, giving researchers
+          and developers familiar with MdC a way to work with this system.
+        </p>
+        <p>
+          ORAEC's recommendations, published in 2022 and accompanied by a
+          checker in 2024, were valuable in developing and improving this
+          project. However, sign variation can be important in many research
+          contexts. I therefore preserve all variants represented in the
+          current Unicode release rather than unifying them, for example by
+          always mapping W17/W18 to W17. If a sign has no Unicode mapping, the
+          converter reports “Unknown MdC code” instead of substituting another
+          sign. Sign selection is left entirely to the user. Read the original
+          <a
+            href="https://oraec.github.io/2022/09/28/recommendations-encoding-hieroglyphs.html"
+            target="_blank"
+            rel="noopener noreferrer"
+            >ORAEC recommendations</a
+          >, browse the
+          <a
+            href="https://github.com/oraec/recommendations-encoding-hieroglyphs"
+            target="_blank"
+            rel="noopener noreferrer"
+            >source repository</a
+          >
+          and its
+          <a
+            href="https://github.com/oraec/recommendations-encoding-hieroglyphs/blob/main/guidelines_unicode_hieroglyphs.csv"
+            target="_blank"
+            rel="noopener noreferrer"
+            >character-by-character CSV</a
+          >, or try the
+          <a
+            href="https://oraec.github.io/2024/05/06/unicode-recommendations-checker.html"
+            target="_blank"
+            rel="noopener noreferrer"
+            >2024 Unicode Recommendations Checker</a
+          >.
+        </p>
+      </div>
+    </dialog>
+
     <script src="MdCUnicodeConverter%20Library/MdCUnicodeConverter.js"></script>
     <script>
       const converter = new MdCUnicodeConverter();
+      const aboutModal = document.getElementById("aboutModal");
+      document.getElementById("openAbout").addEventListener("click", () => {
+        aboutModal.showModal();
+      });
+      document.getElementById("closeAbout").addEventListener("click", () => {
+        aboutModal.close();
+      });
+      aboutModal.addEventListener("keydown", (event) => {
+        if (event.key === "Escape") {
+          event.preventDefault();
+          aboutModal.close();
+        }
+      });
       document.getElementById("unicodeVersion").textContent =
         MdCUnicodeConverter.UNICODE_VERSION;
 

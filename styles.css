@@ -10,6 +10,92 @@ a {
   color: #fff;
 }
 
+.top-actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 0.5em;
+}
+
+.about-button,
+.about-modal__close {
+  border: 1px solid #aaa;
+  border-radius: 4px;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+}
+
+.about-button {
+  padding: 0.45em 0.8em;
+  font: inherit;
+  font-size: 0.85em;
+}
+
+.about-button:hover,
+.about-modal__close:hover {
+  background: #3a3a3a;
+}
+
+.about-modal {
+  width: min(52rem, calc(100vw - 2rem));
+  max-width: none;
+  max-height: 84vh;
+  padding: 0;
+  overflow: hidden;
+  border: 1px solid #777;
+  border-radius: 6px;
+  background: #252525;
+  color: #eee;
+  text-align: left;
+}
+
+.about-modal::backdrop {
+  background: rgb(0 0 0 / 72%);
+}
+
+.about-modal__header {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1em;
+  padding: 0.8em 1.25em;
+  border-bottom: 1px solid #555;
+  background: #252525;
+}
+
+.about-modal__header h2 {
+  margin: 0;
+  font-size: 1.15em;
+}
+
+.about-modal__close {
+  flex: none;
+  width: 2rem;
+  height: 2rem;
+  font-size: 1.4rem;
+  line-height: 1;
+}
+
+.about-modal__content {
+  max-height: calc(84vh - 4.5rem);
+  padding: 0.5em 1.5em 1.5em;
+  overflow-y: auto;
+  line-height: 1.6;
+}
+
+.about-modal__content a {
+  color: #a9d8ff;
+  text-underline-offset: 0.15em;
+}
+
+.about-sample {
+  margin: 0.4em 0 1em;
+  font-size: 1.7em;
+}
+
 /* Microsoft Egyptian OpenType (OFL): implements the Unicode Egyptian Hieroglyph Format Controls. */
 @font-face {
   font-family: "EgyptianOpenType";
@@ -71,6 +157,21 @@ a {
 }
 
 @media (max-width: 768px) {
+  body {
+    margin: 1em;
+  }
+
+  .about-modal {
+    width: calc(100vw - 1rem);
+    max-height: 90vh;
+  }
+
+  .about-modal__content {
+    max-height: calc(90vh - 4.5rem);
+    padding-right: 1em;
+    padding-left: 1em;
+  }
+
   .input-container {
     flex-direction: column;
   }

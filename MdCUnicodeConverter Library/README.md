@@ -6,7 +6,7 @@
 
 It covers every sign of Unicode 18.0 (Egyptian Hieroglyphs and Egyptian Hieroglyphs Extended-A, 5067 signs) and converts whole MdC texts, translating the MdC layout operators (`:`, `*`, `&`, `()`, cartouches, mirroring, shading...) into the Unicode Egyptian Hieroglyph Format Controls (U+13430–U+13455) and back.
 
-Primary MdC codes follow the Unicode catalogue names (`A1`, `A5a`, `Aa1`, `A1f`...). JSesh codes from the Unicode database (`kEH_JSesh`) and the codes used by older versions of this library are accepted as input aliases.
+Primary MdC codes follow the Unicode catalogue names (`A1`, `A5a`, `Aa1`, `A1f`...). Canonical MdC phonetic values are also accepted, including multi-letter values such as `ib` (F34) and `nfr` (F35). JSesh codes from the Unicode database (`kEH_JSesh`) and the codes used by older versions of this library remain supported as aliases. Resolution order is Gardiner code, phonetic value, then Unicode/legacy alias; unknown strings are not split into individual letters.
 
 ## Installation
 

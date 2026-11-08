@@ -22,6 +22,12 @@ Source code: https://github.com/csrgrr/MdCToUnicode
    derived from it by tools/build-sign-data.mjs.
    Source: https://www.unicode.org/Public/UCD/latest/ucd/Unikemet.txt
 
+3. MdC phonetic code mappings
+   The phonetic-value-to-Gardiner-code mappings in
+   "MdCUnicodeConverter Library/MdCUnicodeConverter.js" are derived from
+   JSesh's ManuelDeCodage.java, dedicated to the public domain under CC0 1.0.
+   Source: https://github.com/rosmord/jsesh/blob/master/jsesh/src/main/java/jsesh/signcodes/ManuelDeCodage.java
+
 UNICODE LICENSE V3
 
 COPYRIGHT AND PERMISSION NOTICE
