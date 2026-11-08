@@ -7,7 +7,7 @@ A browser-based, bidirectional converter between Manuel de Codage (MdC), Unicode
 
 ## Web app
 
-Open [MdCToUnicode.html](MdCToUnicode.html) in a browser. Edit any of the three fields (MdC, Unicode code points, or Unicode text) to update the other two. Invalid or unsupported input is reported below the fields.
+Visit [csrgrr.com/mdc-to-unicode](https://csrgrr.com/mdc-to-unicode/) or open [MdCToUnicode.html](MdCToUnicode.html) in a browser. Edit any of the three fields (MdC, Unicode code points, or Unicode text) to update the other two. Invalid or unsupported input is reported below the fields.
 
 The app and its bundled [Egyptian OpenType font](fonts/eot.ttf) run locally; no build step or external service is required. The font renders the Unicode format controls as arranged quadrats. To display the same layouts elsewhere, use a font that supports these controls.
 
