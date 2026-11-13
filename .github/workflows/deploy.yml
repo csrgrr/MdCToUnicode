@@ -58,13 +58,12 @@ jobs:
             whoami
             pwd
 
-      - name: Deploy to IONOS via SCP
-        uses: appleboy/scp-action@v1
+      - name: Test IONOS SSH connection
+        uses: appleboy/ssh-action@v1
         with:
           host: ${{ secrets.IONOS_HOST }}
           username: ${{ secrets.IONOS_USERNAME }}
           password: ${{ secrets.IONOS_PASSWORD }}
           port: ${{ secrets.IONOS_PORT }}
-          source: "./*"
-          target: ${{ secrets.IONOS_TARGET }}
-          overwrite: true
+          script: |
+            echo "SSH connection successful"
