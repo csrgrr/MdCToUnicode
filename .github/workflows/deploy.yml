@@ -40,6 +40,15 @@ jobs:
           echo "Target configured: YES"
           echo "Configuration looks correct"
 
+      - name: Stage site files
+        run: |
+          rm -rf _site
+          mkdir _site
+          cp MdCToUnicode.html _site/index.html
+          cp MdCToUnicode.html _site/MdCToUnicode.html
+          cp styles.css LICENSE NOTICE _site/
+          cp -r fonts "MdCUnicodeConverter Library" _site/
+
       - name: Deploy to IONOS via SFTP
         uses: wlixcc/SFTP-Deploy-Action@v1.2.6
         with:
@@ -47,7 +56,7 @@ jobs:
           username: ${{ secrets.IONOS_USERNAME }}
           password: ${{ secrets.IONOS_PASSWORD }}
           port: ${{ secrets.IONOS_PORT }}
-          local_path: './*'
+          local_path: './_site/*'
           remote_path: ${{ secrets.IONOS_TARGET }}
           sftp_only: true
           delete_remote_files: false
