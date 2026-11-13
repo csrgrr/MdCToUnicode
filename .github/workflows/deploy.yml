@@ -1,0 +1,28 @@
+
+name: Deploy mdc-to-unicode to IONOS
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    name: Deploy static website
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Deploy to IONOS via SSH
+        uses: appleboy/scp-action@v1
+        with:
+          host: ${{ secrets.IONOS_HOST }}
+          username: ${{ secrets.IONOS_USER }}
+          password: ${{ secrets.IONOS_PASSWORD }}
+          port: ${{ secrets.IONOS_PORT }}
+          source: "./*"
+          target: ${{ secrets.IONOS_TARGET }}
+          overwrite: true
