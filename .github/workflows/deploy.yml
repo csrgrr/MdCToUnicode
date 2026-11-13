@@ -22,10 +22,11 @@ jobs:
           IONOS_HOST: ${{ secrets.IONOS_HOST }}
           IONOS_PORT: ${{ secrets.IONOS_PORT }}
           IONOS_TARGET: ${{ secrets.IONOS_TARGET }}
+          IONOS_PASSWORD: ${{ secrets.IONOS_PASSWORD }}
         run: |
           echo "Checking IONOS configuration..."
 
-          for VAR in IONOS_USERNAME IONOS_HOST IONOS_PORT IONOS_TARGET; do
+          for VAR in IONOS_USERNAME IONOS_HOST IONOS_PORT IONOS_TARGET IONOS_PASSWORD; do
             if [ -z "${!VAR}" ]; then
               echo "ERROR: $VAR is empty"
               exit 1
@@ -39,13 +40,14 @@ jobs:
           echo "Target configured: YES"
           echo "Configuration looks correct"
 
-      - name: Deploy to IONOS via SCP
-        uses: appleboy/scp-action@v1
+      - name: Deploy to IONOS via SFTP
+        uses: wlixcc/SFTP-Deploy-Action@v1.2.6
         with:
-          host: ${{ secrets.IONOS_HOST }}
+          server: ${{ secrets.IONOS_HOST }}
           username: ${{ secrets.IONOS_USERNAME }}
           password: ${{ secrets.IONOS_PASSWORD }}
           port: ${{ secrets.IONOS_PORT }}
-          source: "./*"
-          target: ${{ secrets.IONOS_TARGET }}
-          overwrite: true
+          local_path: './*'
+          remote_path: ${{ secrets.IONOS_TARGET }}
+          sftp_only: true
+          delete_remote_files: false
