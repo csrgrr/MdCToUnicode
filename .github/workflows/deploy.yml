@@ -13,21 +13,19 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # 1. Descargar el repositorio
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      # 2. Comprobar los secretos de IONOS
       - name: Check IONOS configuration
         env:
-          IONOS_USER: ${{ secrets.IONOS_USER }}
+          IONOS_USERNAME: ${{ secrets.IONOS_USERNAME }}
           IONOS_HOST: ${{ secrets.IONOS_HOST }}
           IONOS_PORT: ${{ secrets.IONOS_PORT }}
         run: |
           echo "Checking IONOS configuration..."
 
-          if [ -z "$IONOS_USER" ]; then
-            echo "ERROR: IONOS_USER is empty"
+          if [ -z "$IONOS_USERNAME" ]; then
+            echo "ERROR: IONOS_USERNAME is empty"
             exit 1
           fi
 
@@ -36,24 +34,23 @@ jobs:
             exit 1
           fi
 
-          echo "Username length: ${#IONOS_USER}"
-          echo "Username prefix: ${IONOS_USER:0:2}"
+          echo "Username length: ${#IONOS_USERNAME}"
+          echo "Username prefix: ${IONOS_USERNAME:0:2}"
           echo "Host configured: YES"
           echo "Port configured: $IONOS_PORT"
 
-          if [[ "$IONOS_USER" =~ [[:space:]] ]]; then
+          if [[ "$IONOS_USERNAME" =~ [[:space:]] ]]; then
             echo "ERROR: Username contains whitespace"
             exit 1
           fi
 
           echo "Configuration looks correct"
 
-      # 3. Probar conexión SSH
       - name: Test IONOS SSH connection
         uses: appleboy/ssh-action@v1
         with:
           host: ${{ secrets.IONOS_HOST }}
-          username: ${{ secrets.IONOS_USER }}
+          username: ${{ secrets.IONOS_USERNAME }}
           password: ${{ secrets.IONOS_PASSWORD }}
           port: ${{ secrets.IONOS_PORT }}
           script: |
@@ -61,12 +58,11 @@ jobs:
             whoami
             pwd
 
-      # 4. Desplegar archivos
       - name: Deploy to IONOS via SCP
         uses: appleboy/scp-action@v1
         with:
           host: ${{ secrets.IONOS_HOST }}
-          username: ${{ secrets.IONOS_USER }}
+          username: ${{ secrets.IONOS_USERNAME }}
           password: ${{ secrets.IONOS_PASSWORD }}
           port: ${{ secrets.IONOS_PORT }}
           source: "./*"
